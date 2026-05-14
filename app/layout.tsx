@@ -39,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", roboto.variable)}>
+    <html lang="en" dir='rtl' className={cn("font-sans", roboto.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
