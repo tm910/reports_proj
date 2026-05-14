@@ -130,3 +130,6 @@
     @apply font-sans;
   }
 }
+body {
+  background: pink;
+}
