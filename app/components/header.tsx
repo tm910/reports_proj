@@ -4,7 +4,7 @@ import SearchBar from "./search-bar";
 import Logo from "./logo";
 import { CarIcon, Heart, Menu, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -14,35 +14,41 @@ const Header = () => {
     return (
       <header className="">
         <div className="flex flex-wrap gap-5 items-center p-4 bg-secondary">
-    <div className="flex justify-between w-full md:w-auto items-center">
-              <Menu className="text-white md:hidden" />
-              <Logo />
+          <div className="flex justify-between w-full md:w-auto items-center">
+            <Menu className="text-white md:hidden" />
+            <Logo />
 
-              <div className="flex items-center md:hidden">
-                <ShoppingCart className="text-white" />
-              </div>
+            <div className="flex items-center md:hidden">
+              <ShoppingCart className="text-white" />
             </div>
-            {/* Search Bar */}
+          </div>
+          {/* Search Bar */}
+          
+          <Suspense
+            fallback={
+              <div className="h-10 w-full bg-gray-100 animate-pulse rounded-md" />
+            }
+          >
             <SearchBar
               searchValue={searchValue}
               handleSearchChange={handleSearchChange}
             />
-            <div className="hidden md:flex gap-6 text-white">
-              <Link href="/account" className="block text-center mr-4">
-                <User />
-                <p className="text-xs mt-1">حسابي</p>
-              </Link>
-              <Link href="/wishlist" className="block">
-                <Heart />
-                <p className="text-xs mt-1">المفضلة</p>
-              </Link>
-              <Link href="/cart" className="block">
-                <ShoppingCart />
-                <p className="text-xs mt-1">السلة</p>
-              </Link>
-            </div>
+          </Suspense>
+          <div className="hidden md:flex gap-6 text-white">
+            <Link href="/account" className="block text-center mr-4">
+              <User />
+              <p className="text-xs mt-1">حسابي</p>
+            </Link>
+            <Link href="/wishlist" className="block">
+              <Heart />
+              <p className="text-xs mt-1">المفضلة</p>
+            </Link>
+            <Link href="/cart" className="block">
+              <ShoppingCart />
+              <p className="text-xs mt-1">السلة</p>
+            </Link>
+          </div>
         </div>
-       
 
         <Nav />
       </header>
